@@ -1,0 +1,22 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ main, feat/*, vlw-* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify Baseline HTML
+        run: |
+          if [ -f index.html ]; then
+            echo "Baseline index.html exists."
+          else
+            echo "index.html missing!" && exit 1
+          fi
