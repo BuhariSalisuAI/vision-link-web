@@ -1,22 +1,27 @@
-name: CI Workflow
+name: Vision-Link CI Workflow
 
 on:
   push:
-    branches: [ main, feat/*, vlw-* ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  verify-baseline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Verify Baseline HTML
+      - name: Verify Baseline File Exists
         run: |
-          if [ -f index.html ]; then
-            echo "Baseline index.html exists."
-          else
-            echo "index.html missing!" && exit 1
+          if [ ! -f BASELINE.md ]; then
+            echo "Error: BASELINE.md document is missing!"
+            exit 1
           fi
+
+      - name: Verify Structural HTML Anchors & Dependencies
+        run: |
+          echo "Checking index.html for critical baseline components..."
+          grep -q "cdn.tailwindcss.com" index.html || { echo "Missing Tailwind Play CDN dependency"; exit 1; }
+          echo "Baseline structural verification passed successfully!"
