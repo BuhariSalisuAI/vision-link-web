@@ -1,4 +1,4 @@
-name: Vision-Link CI Workflow
+name: CI & Deployment Safety Net
 
 on:
   push:
@@ -7,21 +7,34 @@ on:
     branches: [ main ]
 
 jobs:
-  verify-baseline:
+  verify-and-guard:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Verify Baseline File Exists
+      - name: Verify Baseline Exists
         run: |
-          if [ ! -f BASELINE.md ]; then
-            echo "Error: BASELINE.md document is missing!"
+          if [ ! -f "BASELINE.md" ]; then
+            echo "Error: BASELINE.md is missing."
             exit 1
           fi
 
-      - name: Verify Structural HTML Anchors & Dependencies
+      - name: Check Tailwind CDN
         run: |
-          echo "Checking index.html for critical baseline components..."
-          grep -q "cdn.tailwindcss.com" index.html || { echo "Missing Tailwind Play CDN dependency"; exit 1; }
-          echo "Baseline structural verification passed successfully!"
+          if ! grep -q "cdn.tailwindcss.com" index.html; then
+            echo "Error: Tailwind CSS CDN reference missing in index.html."
+            exit 1
+          fi
+
+  deploy:
+    needs: verify-and-guard
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        
