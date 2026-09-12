@@ -1,23 +1,15 @@
-# VISION-LINK AI HUB - Web Baseline Assessment (v1.0)
+# VISION-LINK AI HUB - Baseline Architecture
 
-## Site Overview
-- **Name:** VISION-LINK AI HUB Landing Page
-- **Hosting Environment:** Hosted via GitHub Pages directly from the main branch root directory (`index.html`).
-- **Stack:** Core HTML structure, client-side JavaScript, Tailwind CSS.
+## Overview
+VISION-LINK AI Hub (J-FEWS) is hosted directly on GitHub Pages from the `main` branch as a static landing page.
 
-## Key Page Components & Anchors
-- **Title/Headline:** VISION-LINK AI HUB
-- **Navigation Anchors:** `#solutions`, `#contact`
-- **External Dependencies:** Tailwind Play CDN script (`<script src="https://cdn.tailwindcss.com"></script>`) at line 7.
+## Hosting & Deployment
+- **Hosting Platform:** GitHub Pages.
+- **Publishing Source:** Deployed directly from the repository's `main` branch.
+- **Behavior:** Any change merged into `main` immediately goes live to visitors without a separate staging or gate deployment pipeline.
 
-## Risk Profile & Failure Modes
-1. **Tailwind Play CDN Dependency (Critical Risk):**
-   - *Issue:* Tailwind Play CDN is not designed for production use.
-   - *Impact:* Slow, unstable, or blocked CDN connection (common for users in regions like Nigeria) will cause the entire page to render completely unstyled.
-2. **Missing Navigation Anchors:**
-   - *Issue:* Accidental removal or renaming of HTML IDs (`#contact`, `#solutions`).
-   - *Impact:* Broken dynamic smooth scrolling and non-functional CTA links.
-3. **Missing or Renamed Entry Point:**
-   - *Issue:* Case-sensitivity mismatch or missing `index.html`.
-   - *Impact:* 404 / Blank Page error.
-   - 
+## Risk Assessment & Breaking Changes
+Since GitHub Pages serves updates instantly upon merge:
+- Unverified HTML changes, broken Tailwind CSS CDN links, or invalid syntax can directly impact live visitors.
+- Automated checks on pushes/PRs serve as a lightweight warning layer, though final caution must be exercised before merging into `main`.
+- 
