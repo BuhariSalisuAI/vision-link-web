@@ -20,4 +20,4 @@
 3. **Missing or Renamed Entry Point:**
    - *Issue:* Case-sensitivity mismatch or missing `index.html`.
    - *Impact:* 404 / Blank Page error.
-   - 
+   - clear error.
