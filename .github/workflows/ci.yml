@@ -1,0 +1,30 @@
+name: Vision-Link CI Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Baseline Document
+        run: |
+          if [ ! -f BASELINE.md ]; then
+            echo "Error: BASELINE.md missing!"
+            exit 1
+          fi
+
+      - name: Verify HTML Baseline Structure
+        run: |
+          echo "Checking index.html for essential baseline components..."
+          grep -q "id=\"contact\"" index.html || grep -q "href=\"#contact\"" index.html || { echo "Missing #contact anchor"; exit 1; }
+          grep -q "id=\"solutions\"" index.html || grep -q "href=\"#solutions\"" index.html || { echo "Missing #solutions anchor"; exit 1; }
+          grep -q "cdn.tailwindcss.com" index.html || { echo "Missing Tailwind CDN dependency"; exit 1; }
+          echo "All baseline checks passed successfully!"
+          
