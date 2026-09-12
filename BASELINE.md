@@ -2,21 +2,22 @@
 
 ## Site Overview
 - **Name:** VISION-LINK AI HUB Landing Page
-- **Hosting:** GitHub Pages (Root directory `/index.html`)
-- **Language:** HTML / JavaScript / Tailwind CSS
+- **Hosting Environment:** Hosted via GitHub Pages directly from the main branch root directory (`index.html`).
+- **Stack:** Core HTML structure, client-side JavaScript, Tailwind CSS.
 
-## Core Components
-- **Headline & Title:** VISION-LINK AI HUB
-- **Key Sections & Anchors:** `#solutions`, `#contact`
-- **Dependencies:** Tailwind Play CDN (`<script src="https://cdn.tailwindcss.com"></script>`)
+## Key Page Components & Anchors
+- **Title/Headline:** VISION-LINK AI HUB
+- **Navigation Anchors:** `#solutions`, `#contact`
+- **External Dependencies:** Tailwind Play CDN script (`<script src="https://cdn.tailwindcss.com"></script>`) at line 7.
 
 ## Risk Profile & Failure Modes
-1. **Tailwind Play CDN Dependency:** 
-   - *Risk:* Line 7 uses the Tailwind Play CDN script. Official docs state Play CDN is not production-ready.
-   - *Impact:* Slow/blocked CDN connection (especially for users in regions like Nigeria) causes the page to render unstyled.
-2. **Missing Anchors/Elements:** 
-   - *Risk:* Accidental deletion of critical DOM IDs (`#contact`, `#solutions`).
-   - *Impact:* Broken navigation and non-functional forms/CTA buttons.
-3. **Blank Page / Syntax Errors:** 
-   - *Risk:* Broken tags or unclosed HTML/JS syntax.
+1. **Tailwind Play CDN Dependency (Critical Risk):**
+   - *Issue:* Tailwind Play CDN is not designed for production use.
+   - *Impact:* Slow, unstable, or blocked CDN connection (common for users in regions like Nigeria) will cause the entire page to render completely unstyled.
+2. **Missing Navigation Anchors:**
+   - *Issue:* Accidental removal or renaming of HTML IDs (`#contact`, `#solutions`).
+   - *Impact:* Broken dynamic smooth scrolling and non-functional CTA links.
+3. **Missing or Renamed Entry Point:**
+   - *Issue:* Case-sensitivity mismatch or missing `index.html`.
+   - *Impact:* 404 / Blank Page error.
    - 
