@@ -13,3 +13,4 @@ This repository uses GitHub Actions (`.github/workflows/ci.yml`) to ensure zero-
 2. Make your updates and commit changes.
 3. Open a Pull Request against `main`.
 4. Ensure all automated CI workflow checks pass before requesting review and merging.
+5. <!-- update -->).
