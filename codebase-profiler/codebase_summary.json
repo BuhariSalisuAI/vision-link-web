@@ -1,0 +1,16 @@
+{
+    "repository_name": "vision-link-web",
+    "owner": "BuhariSalisuAI",
+    "total_files": 4,
+    "languages": {
+        "HTML": 100.0
+    },
+    "structure": [
+        ".github/workflows/ci.yml",
+        "BASELINE.md",
+        "README.md",
+        "index.html"
+    ],
+    "analysis_timestamp": "2026-10-31T12:00:00Z",
+    "profiler_version": "v1.2.0"
+}
