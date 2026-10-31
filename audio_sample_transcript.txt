@@ -1,0 +1,10 @@
+# VISION-LINK AI HUB - Audio & Transcript Sample Pair
+# Dataset Type: Speech Recognition & Field Communication Logs
+
+[RECORDING INFO]
+- Audio_File_Ref: sample_audio_01.wav
+- Duration: 00:45 seconds
+- Language/Dialect: English / Localized Technical Field Report
+
+[TRANSCRIPT]
+"System status is nominal. Water level sensors in Zone B have stabilized following the morning telemetry update. Automated alerts have been routed to the primary dashboard, and the data pipeline is actively synchronizing with the central repository without latency."
